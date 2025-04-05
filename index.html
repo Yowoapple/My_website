@@ -13,6 +13,9 @@
       margin: 0;
       padding: 0;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background: #000;
@@ -34,10 +37,13 @@
       font-size: 4rem;
       font-weight: 800;
       margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
     }
     header p {
       font-size: 1.25rem;
-      opacity: 0.8;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
     }
     .social {
       margin-top: 2rem;
@@ -45,6 +51,8 @@
       gap: 1.5rem;
       flex-wrap: wrap;
       justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 1s forwards;
     }
     .social a {
       background: rgba(255,255,255,0.1);
@@ -58,10 +66,10 @@
       background: rgba(255,255,255,0.2);
     }
     .gallery {
-      padding: 4rem 2rem;
+      padding: 6rem 4rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
       background: #111;
     }
     .gallery img {
@@ -73,11 +81,63 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
+    .bio {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem;
+      background: #0d0d0d;
+    }
+    .bio img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+    .bio-content {
+      max-width: 600px;
+    }
+    .bio-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .bio-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0.85;
+    }
+    .contact {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: #111;
+    }
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
     footer {
       text-align: center;
       padding: 2rem;
       background: #000;
       opacity: 0.6;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -99,6 +159,19 @@
     <img src="https://source.unsplash.com/random/800x600?nature,3" alt="image3" />
     <img src="https://source.unsplash.com/random/800x600?nature,4" alt="image4" />
     <img src="https://source.unsplash.com/random/800x600?nature,5" alt="image5" />
+  </section>
+
+  <section class="bio">
+    <img src="https://source.unsplash.com/random/400x400?face" alt="avatar" />
+    <div class="bio-content">
+      <h2>關於 YoWoRingo</h2>
+      <p>YoWoRingo 是一位探索數位與實體之間邊界的創作者，從 VRC 到現實生活攝影，熱愛呈現世界細膩又溫柔的一面。</p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>聯絡我</h2>
+    <p>歡迎來信或透過社群媒體私訊與我聯絡，一起創造有趣的事情 ✨</p>
   </section>
 
   <footer>
