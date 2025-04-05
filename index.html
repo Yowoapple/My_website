@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YoWoRingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(30,30,30,0.7)), url('https://source.unsplash.com/random/1920x1080?technology') no-repeat center center/cover;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      padding: 2rem;
+    }
+    header h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      opacity: 0.8;
+    }
+    .social {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social a {
+      background: rgba(255,255,255,0.1);
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s;
+    }
+    .social a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .gallery {
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      background: #111;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #000;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>YoWoRingo</h1>
+    <p>探索現實與虛擬交界的溫柔異世界。</p>
+    <div class="social">
+      <a href="https://www.youtube.com/channel/UCLHu5LgRc9USRvSvly6xRzg" target="_blank">YouTube</a>
+      <a href="https://x.com/yoworingo_VRC" target="_blank">X (@yoworingo_VRC)</a>
+      <a href="https://x.com/AppleJackOAO" target="_blank">X (@AppleJackOAO)</a>
+      <a href="https://www.twerg.org/" target="_blank">Twerg</a>
+    </div>
+  </header>
+
+  <section class="gallery">
+    <img src="https://source.unsplash.com/random/800x600?nature,1" alt="image1" />
+    <img src="https://source.unsplash.com/random/800x600?nature,2" alt="image2" />
+    <img src="https://source.unsplash.com/random/800x600?nature,3" alt="image3" />
+    <img src="https://source.unsplash.com/random/800x600?nature,4" alt="image4" />
+    <img src="https://source.unsplash.com/random/800x600?nature,5" alt="image5" />
+  </section>
+
+  <footer>
+    <p>&copy; 2025 YoWoRingo. All rights reserved.</p>
+  </footer>
+</body>
+</html>
