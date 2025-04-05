@@ -22,6 +22,15 @@
       color: white;
       overflow-x: hidden;
     }
+    section, footer, header {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+    section.visible, footer.visible, header.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     header {
       height: 100vh;
       display: flex;
@@ -81,6 +90,25 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
+    .bio, .contact {
+      position: relative;
+      overflow: hidden;
+    }
+    .bio::before, .contact::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .bio:hover::before, .contact:hover::before {
+      opacity: 1;
+    }
     .bio {
       display: flex;
       flex-wrap: wrap;
@@ -123,6 +151,13 @@
       font-size: 1.1rem;
       opacity: 0.85;
     }
+    .contact a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #4fd1c5;
+      text-decoration: none;
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -154,15 +189,15 @@
   </header>
 
   <section class="gallery">
-    <img src="https://media.discordapp.net/attachments/1266861244682473686/1357658726269583482/ChatGPT_Image_202544_02_11_15.png?ex=67f1aa78&is=67f058f8&hm=afc3daed591278d97a9ab900dd80a846e89e8e6540d4bd2c516ab4668173cf28" alt="image1" />
-    <img src="https://media.discordapp.net/attachments/1266861244682473686/1349701148822736966/1741845122975.jpg?ex=67f26126&is=67f10fa6&hm=60bb85d258eb748806b8932890dceb001b980454cf047ab9dcc06f867c76012e" />
-    <img src="https://cdn.discordapp.com/attachments/1266861244682473686/1334773487008485376/IMG_20250131_143310.jpg?ex=67f2202e&is=67f0ceae&hm=5632042d7f2fc8bebc1e0d1fbc81ff1d62d5f7c7df3f1bac85d3c1f8f2150726&" alt="image3" />
-    <img src="https://media.discordapp.net/attachments/1266861244682473686/1354490727924498662/1742994182719.jpg?ex=67f2018a&is=67f0b00a&hm=6c2113481b07c8e01b58a82e2fbafa39be02bc47d3eb61b87106549a38c11752" alt="image4" />
-    <img src="https://cdn.discordapp.com/attachments/1224229330322849897/1353311345939976203/IMG_20250323_175922.jpg?ex=67f25468&is=67f102e8&hm=9a41d92c8a503bf712bd8972eb0c35696a60b0514c6379d80685f9e7c5b7f5f1&" alt="image5" />
+    <img src="https://media.discordapp.net/attachments/1266861244682473686/1357658726269583482/ChatGPT_Image_202544_02_11_15.png" alt="image1" />
+    <img src="https://media.discordapp.net/attachments/1266861244682473686/1349701148822736966/1741845122975.jpg" />
+    <img src="https://cdn.discordapp.com/attachments/1266861244682473686/1334773487008485376/IMG_20250131_143310.jpg" alt="image3" />
+    <img src="https://media.discordapp.net/attachments/1266861244682473686/1354490727924498662/1742994182719.jpg" alt="image4" />
+    <img src="https://cdn.discordapp.com/attachments/1224229330322849897/1353311345939976203/IMG_20250323_175922.jpg" alt="image5" />
   </section>
 
   <section class="bio">
-    <img src="https://cdn.discordapp.com/attachments/1266861244682473686/1358070309466673193/IMG_20241017_183510.jpg?ex=67f28109&is=67f12f89&hm=b896592a7ac26b258f4fe10d41036d2710d02d869ec19695d7b4d070cc7f9075&" alt="avatar" />
+    <img src="https://cdn.discordapp.com/attachments/1266861244682473686/1358070309466673193/IMG_20241017_183510.jpg" alt="avatar" />
     <div class="bio-content">
       <h2>關於 YoWoRingo</h2>
       <p>YoWoRingo 是一位探索數位與實體之間邊界的創作者，從 VRC 到現實生活攝影，熱愛呈現世界細膩又溫柔的一面。</p>
@@ -172,10 +207,39 @@
   <section class="contact">
     <h2>聯絡我</h2>
     <p>歡迎來信或透過社群媒體私訊與我聯絡，一起創造有趣的事情 ✨</p>
+    <a href="mailto:apple@twerg.org">apple@twerg.org</a>
   </section>
 
   <footer>
     <p>&copy; 2025 YoWoRingo. All rights reserved.</p>
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section, footer, header').forEach(el => {
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.bio, .contact').forEach(section => {
+      section.addEventListener('mousemove', e => {
+        const rect = section.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        section.style.setProperty('--x', `${x}%`);
+        section.style.setProperty('--y', `${y}%`);
+      });
+      section.addEventListener('mouseleave', () => {
+        section.style.removeProperty('--x');
+        section.style.removeProperty('--y');
+      });
+    });
+  </script>
 </body>
 </html>
